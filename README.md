@@ -8,7 +8,7 @@ Este repositório apresenta um projeto de Internet das Coisas (IoT) utilizando a
 - Explorar o uso de bibliotecas de rede e conexão Wi-Fi em C.
 - Implementar comunicação de dados com serviços de nuvem utilizando HTTP.
 - Mapear os eixos do joystick e convertê-los em direções cardeais (rosa dos ventos).
-- Utilizar o servidor do ThingSpeak como plataforma de armazenamento e visualização remota.
+- Utilizar o servidor local como plataforma de visualização dos dados.
 - Desenvolver e exibir os dados de forma dinâmica em uma página web.
 
 
