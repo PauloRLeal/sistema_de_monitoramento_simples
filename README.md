@@ -59,7 +59,12 @@ Este repositório apresenta um projeto de Internet das Coisas (IoT) utilizando a
 Caso o seu sistema de controle e monitoramento não apresente o IP para acesso a página para acompanhamento dos dados coletados ou a pagina web não carregue, verifique se configurou corretamente as informações da rede Wi-Fi.
 
 ## Layout da página Web
-<img src="https://github.com/PauloRLeal/sistema_de_monitoramento_simples/blob/a3b2c5661f5762f70a700c04c1384bc3841f6276/img/Captura%20de%20tela%202025-05-11%20001507.png">
+<img src="https://github.com/PauloRLeal/sistema_de_monitoramento_s,imples/blob/a3b2c5661f5762f70a700c04c1384bc3841f6276/img/Captura%20de%20tela%202025-05-11%20001507.png">
+
+## Padrão de dados
+> * Botão: 1 ou -1.
+> * Joystick: Um intervalo fechado de -1 a 1.
+> * Rosa dos ventos: Centro, Norte, Sul, Leste, Oeste, Nordeste, Noroeste, Sudeste, Sudoeste.
 
 ## Direitos de Uso
 Este projeto é disponibilizado para leitura e citação em outros trabalhos. Caso utilize este projeto como referência, por favor, forneça os devidos créditos ao autor.
