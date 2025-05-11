@@ -78,29 +78,6 @@ void calculate_wind_direction(float x, float y)
     }
 }
 
-int direction_to_number(const char *dir)
-{
-    if (strcmp(dir, "Centro") == 0)
-        return 0;
-    if (strcmp(dir, "Norte") == 0)
-        return 1;
-    if (strcmp(dir, "Sul") == 0)
-        return 2;
-    if (strcmp(dir, "Leste") == 0)
-        return 3;
-    if (strcmp(dir, "Oeste") == 0)
-        return 4;
-    if (strcmp(dir, "Nordeste") == 0)
-        return 5;
-    if (strcmp(dir, "Noroeste") == 0)
-        return 6;
-    if (strcmp(dir, "Sudeste") == 0)
-        return 7;
-    if (strcmp(dir, "Sudoeste") == 0)
-        return 8;
-    return -1;
-}
-
 float converterValor(float input)
 {
     float min_input = 0;
