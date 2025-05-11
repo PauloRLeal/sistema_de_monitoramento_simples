@@ -62,8 +62,8 @@ Caso o seu sistema de controle e monitoramento não apresente o IP para acesso a
 <img src="https://github.com/PauloRLeal/sistema_de_monitoramento_simples/blob/6cf921bb663a2b78fc62f59e0f9b728ea5bc0ce7/img/Captura%20de%20tela%202025-05-11%20001507.png">
 
 ## Padrão de dados
-> * Botão A e B: 1 ou -1.
-> * Joystick: Um intervalo fechado de -1 a 1.
+> * Botão A e B: 0 ou 1.
+> * Joystick X e Y: Intervalo fechado em ponto flutuante de -1.0 à 1.0.
 > * Rosa dos ventos: Centro, Norte, Sul, Leste, Oeste, Nordeste, Noroeste, Sudeste, Sudoeste.
 
 ## Direitos de Uso
