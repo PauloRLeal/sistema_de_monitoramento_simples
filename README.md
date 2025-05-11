@@ -58,6 +58,8 @@ Este repositório apresenta um projeto de Internet das Coisas (IoT) utilizando a
 ## Possíveis dificuldades
 Caso o seu sistema de controle e monitoramento não apresente o IP para acesso a página para acompanhamento dos dados coletados ou a pagina web não carregue, verifique se configurou corretamente as informações da rede Wi-Fi.
 
+## Layout da página Web
+<img src="img/Captura de tela 2025-05-11 001507.png">
 
 ## Direitos de Uso
 Este projeto é disponibilizado para leitura e citação em outros trabalhos. Caso utilize este projeto como referência, por favor, forneça os devidos créditos ao autor.
