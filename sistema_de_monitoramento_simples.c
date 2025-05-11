@@ -1,4 +1,3 @@
-#include <math.h>
 #include "pico/stdlib.h"
 #include "hardware/adc.h"
 #include "pico/cyw43_arch.h"
@@ -8,12 +7,13 @@
 #include "lwip/pbuf.h"
 #include "lwip/tcp.h"
 #include "lwip/netif.h" // Para acessar netif_default e IP
+#include <math.h>
 
 // Configurações de Wi-Fi
-#define WIFI_SSID "Paulo"
-#define WIFI_PASSWORD "paulo1243"
+#define WIFI_SSID "MALUCO LOBERA"
+#define WIFI_PASSWORD "16out1962"
 
-// Definição dos pinos dos LEDs
+#define LED_PIN CYW43_WL_GPIO_LED_PIN
 #define BTN_A_PIN 5
 #define BTN_B_PIN 6
 #define JOYSTICK_X_PIN 26
@@ -101,7 +101,6 @@ int direction_to_number(const char *dir)
     return -1;
 }
 
-
 float converterValor(float input)
 {
     float min_input = 0;
@@ -158,7 +157,15 @@ static err_t tcp_server_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, er
 
     printf("Request: %s\n", request);
 
+    adc_select_input(1);
+    x_position = converterValor(adc_read());
+    adc_select_input(0);
+    y_position = converterValor(adc_read());
+    printf("X: %.2f, Y: %.2f", x_position, y_position);
+    calculate_wind_direction(x_position, y_position);
 
+    btn_a_state = !gpio_get(BTN_A_PIN);
+    btn_b_state = !gpio_get(BTN_B_PIN);
     // Cria a resposta HTML
     char html[1024];
 
@@ -174,16 +181,17 @@ static err_t tcp_server_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, er
              "body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }\n"
              "h1 { font-size: 64px; margin-bottom: 30px; }\n"
              "button { font-size: 36px; margin: 10px; padding: 20px 40px; border-radius: 10px; }\n"
-             ".button { font-size: 48px; margin-top: 30px; color: #333; }\n"
+             ".sensor { font-size: 48px; margin-top: 30px; color: #333; }\n"
              "</style>\n"
+             "<script>setTimeout(() => location.reload(), 1000);</script>\n"
              "</head>\n"
              "<body>\n"
              "<h1>Sistema de monitoramento</h1>\n"
-             "<p class=\"button\">Botao A: %d</p>\n"
-             "<p class=\"button\">Botao B: %d</p>\n"
-             "<p class=\"button\">Joystick X: %.2f</p>\n"
-             "<p class=\"button\">Joystick Y: %.2f</p>\n"
-             "<p class=\"button\">Rosa dos Ventos: %s</p>\n"
+             "<p class=\"sensor\">Botao A: %d</p>\n"
+             "<p class=\"sensor\">Botao B: %d</p>\n"
+             "<p class=\"sensor\">Joystick X: %.2f</p>\n"
+             "<p class=\"sensor\">Joystick Y: %.2f</p>\n"
+             "<p class=\"sensor\">Rosa dos Ventos: %s</p>\n"
 
              "</body>\n"
              "</html>\n",
@@ -238,7 +246,6 @@ static err_t tcp_server_accept(void *arg, struct tcp_pcb *newpcb, err_t err)
 int main()
 {
     stdio_init_all();
-
     gpio_init(BTN_A_PIN);
     gpio_set_dir(BTN_A_PIN, GPIO_IN);
     gpio_pull_up(BTN_A_PIN);
@@ -248,7 +255,6 @@ int main()
     adc_init();
     adc_gpio_init(JOYSTICK_X_PIN);
     adc_gpio_init(JOYSTICK_Y_PIN);
-
     // cyw43_arch_deinit(); // Desativa o Wi-Fi
 
     while (cyw43_arch_init())
@@ -295,13 +301,11 @@ int main()
 
     printf("Servidor ouvindo na porta 80\n");
 
-
     while (true)
-    {
-        read_buttons();
-        read_analog();
+    {   
+
         cyw43_arch_poll();
-        sleep_ms(1000); // Delay de 1s
+        sleep_ms(1000);
     }
 
     cyw43_arch_deinit();

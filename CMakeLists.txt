@@ -1,45 +1,3 @@
-# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
-if(WIN32)
-    set(USERHOME $ENV{USERPROFILE})
-else()
-    set(USERHOME $ENV{HOME})
-endif()
-set(sdkVersion 1.5.1)
-set(toolchainVersion 13_2_Rel1)
-set(picotoolVersion 2.0.0)
-set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
-if (EXISTS ${picoVscode})
-    include(${picoVscode})
-endif()
-# ====================================================================================
-# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
-if(WIN32)
-    set(USERHOME $ENV{USERPROFILE})
-else()
-    set(USERHOME $ENV{HOME})
-endif()
-set(sdkVersion 1.5.1)
-set(toolchainVersion 13_2_Rel1)
-set(picotoolVersion 2.0.0)
-set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
-if (EXISTS ${picoVscode})
-    include(${picoVscode})
-endif()
-# ====================================================================================
-# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
-if(WIN32)
-    set(USERHOME $ENV{USERPROFILE})
-else()
-    set(USERHOME $ENV{HOME})
-endif()
-set(sdkVersion 1.5.1)
-set(toolchainVersion 13_2_Rel1)
-set(picotoolVersion 2.0.0)
-set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
-if (EXISTS ${picoVscode})
-    include(${picoVscode})
-endif()
-# ====================================================================================
 # Generated Cmake Pico project file
 
 cmake_minimum_required(VERSION 3.13)
@@ -57,9 +15,9 @@ if(WIN32)
 else()
     set(USERHOME $ENV{HOME})
 endif()
-set(sdkVersion 1.5.1)
-set(toolchainVersion 13_2_Rel1)
-set(picotoolVersion 2.0.0)
+set(sdkVersion 2.1.1)
+set(toolchainVersion 14_2_Rel1)
+set(picotoolVersion 2.1.1)
 set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
     include(${picoVscode})
@@ -70,44 +28,41 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-projectsistema_de_monitoramento_simples C CXX ASM)
+project(sistema_de_monitoramento_simples C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executablesistema_de_monitoramento_simples led_control_webserver.c )
+add_executable(sistema_de_monitoramento_simples sistema_de_monitoramento_simples.c )
 
-pico_set_program_namesistema_de_monitoramento_simples "led_control_webserver")
-pico_set_program_versionsistema_de_monitoramento_simples "0.1")
+pico_set_program_name(sistema_de_monitoramento_simples "sistema_de_monitoramento_simples")
+pico_set_program_version(sistema_de_monitoramento_simples "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uartsistema_de_monitoramento_simples 0)
-pico_enable_stdio_usbsistema_de_monitoramento_simples 1)
+pico_enable_stdio_uart(sistema_de_monitoramento_simples 0)
+pico_enable_stdio_usb(sistema_de_monitoramento_simples 1)
 
 # Add the standard library to the build
-target_link_librariessistema_de_monitoramento_simples
+target_link_libraries(sistema_de_monitoramento_simples
         pico_stdlib
         hardware_gpio
         hardware_adc
-        pico_cyw43_arch_lwip_threadsafe_background
-)
+        pico_cyw43_arch_lwip_threadsafe_background)
 
 # Add the standard include files to the build
-target_include_directoriessistema_de_monitoramento_simples PRIVATE
+target_include_directories(sistema_de_monitoramento_simples PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}
     ${PICO_SDK_PATH}/lib/lwip/src/include
     ${PICO_SDK_PATH}/lib/lwip/src/include/arch
     ${PICO_SDK_PATH}/lib/lwip/src/include/lwip
 )
 
-target_sourcessistema_de_monitoramento_simples PRIVATE
-    ${PICO_SDK_PATH}/lib/lwip/src/apps/http/httpd.c
-    ${PICO_SDK_PATH}/lib/lwip/src/apps/http/fs.c
-)
-
-
 # Add any user requested libraries
+target_link_libraries(sistema_de_monitoramento_simples 
+        pico_cyw43_arch_lwip_threadsafe_background
+        )
 
-pico_add_extra_outputssistema_de_monitoramento_simples)
+pico_add_extra_outputs(sistema_de_monitoramento_simples)
+
